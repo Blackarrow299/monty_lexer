@@ -52,9 +52,9 @@ int main(int argc, char* argv[]) {
       instruction = getInstructionByOpcode(instructions,tokens->data.value);
       
       if(instruction == NULL) {
-         /* theres no instruction TODO handle that */ 
+         /* theres no instruction TODO handle that */  
         fprintf(stderr, "L%i: unknown instruction %s\n", lineNumber, tokens->data.value);
-        exit(EXIT_FAILURE);
+      exit(EXIT_FAILURE);
       }else {
         instruction->f(&stack , lineNumber);
       }
@@ -66,7 +66,7 @@ int main(int argc, char* argv[]) {
     currentNode = TokenNodeHead;
     while (currentNode != NULL) {
       nextNode= currentNode->next;
-     /* printf("line[%i] : %s -> %s \n",currentNode->data.line_number ,TokenLiteral[currentNode->data.tokenType], currentNode->data.value); */
+      fprintf(stderr, "line[%i] : %s -> %s \n",currentNode->data.line_number ,TokenLiteral[currentNode->data.tokenType], currentNode->data.value);
       free(currentNode->data.value);
       free(currentNode);
       currentNode = nextNode;

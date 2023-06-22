@@ -1,6 +1,6 @@
 push 15
 pall
-push 1
+push a
 push 2
 push 65
 push 12
