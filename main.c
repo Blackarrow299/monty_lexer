@@ -66,7 +66,6 @@ int main(int argc, char* argv[]) {
     currentNode = TokenNodeHead;
     while (currentNode != NULL) {
       nextNode= currentNode->next;
-      fprintf(stderr, "line[%i] : %s -> %s \n",currentNode->data.line_number ,TokenLiteral[currentNode->data.tokenType], currentNode->data.value);
       free(currentNode->data.value);
       free(currentNode);
       currentNode = nextNode;
