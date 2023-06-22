@@ -1,7 +1,4 @@
 #include "monty.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 TokenNode *TokenNodeHead = NULL;
 
 char* TokenLiteral[] = {
@@ -33,15 +30,15 @@ int main(int argc, char* argv[]) {
     TokenNode* nextNode;
 
     if(argv[1] == NULL || argc > 2) {
-      printf("USAGE: monty file\n");
-      return (EXIT_FAILURE);
+      fprintf(stderr, "USAGE: monty file\n");
+      exit(EXIT_FAILURE);
     }
 
     file = fopen(argv[1], "r");
     
     if (file == NULL) { 
-      printf("Error: Can't open file %s\n", argv[1]);
-      return (EXIT_FAILURE);
+      fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+      exit(EXIT_FAILURE);
     }
 
     /* read line by line */
@@ -56,7 +53,7 @@ int main(int argc, char* argv[]) {
       
       if(instruction == NULL) {
          /* theres no instruction TODO handle that */ 
-        printf("L%i: unknown instruction %s \n", lineNumber, tokens->data.value);
+        fprintf(stderr, "L%i: unknown instruction %s\n", lineNumber, tokens->data.value);
         exit(EXIT_FAILURE);
       }else {
         instruction->f(&stack , lineNumber);
@@ -77,5 +74,5 @@ int main(int argc, char* argv[]) {
 
     free(instructions);
     fclose(file);
-    return (EXIT_SUCCESS);
+    exit(EXIT_SUCCESS);
 }

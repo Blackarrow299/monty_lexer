@@ -8,7 +8,7 @@ void push(stack_t **stack, unsigned int line_number) {
   (void)line_number;
    
   if(token->next->data.tokenType != INT || token->next == NULL) {
-    printf("L%i: usage: push integer \n", line_number);
+    fprintf(stderr, "L%i: usage: push integer\n", line_number);
     exit(EXIT_FAILURE);
   }
 
