@@ -1,16 +1,10 @@
 #include "monty.h"
 
-char* TokenLiteral[] = {
-  "int",
-  "push", 
-  "pall",
-  "illegal"
-};
-
-Token createToken(TokenType tokenType, char* value) {
+Token createToken(TokenType tokenType, char* value, int line_number) {
   Token token;
   token.tokenType = tokenType;
   token.value = value;
+  token.line_number = line_number;
   return token;
 }
  
@@ -52,7 +46,7 @@ char* readInt(char* input, size_t* pos){
   return out;
 }
 
-Token idenToToken(char* iden) {
+Token idenToToken(char* iden,int line_number) {
   TokenType tokenType;
   if(strcmp(iden, TokenLiteral[PUSH]) == 0) {
     tokenType = PUSH;
@@ -61,15 +55,13 @@ Token idenToToken(char* iden) {
   }else {
     tokenType = ILLEGAL;
   }
-  return createToken(tokenType, iden);
+  return createToken(tokenType, iden, line_number);
 }
 
-TokenNode* tokinizer(char* input) {
-  TokenNode* head = NULL;
-
+void tokinizer(TokenNode** head,char* input,int line_number) {
   size_t pos = 0;
   char ch = input[pos];
-
+  
   while (ch != '\0') {
     if(isdigit(ch)) {
       Token token;
@@ -77,22 +69,20 @@ TokenNode* tokinizer(char* input) {
       if(n == NULL) {
         _mallocFailed();
       }
-      token = createToken(INT, n);
-      appendTokenList(&head, token);
+      token = createToken(INT, n, line_number);
+      appendTokenList(head, token);
     }else if(isalpha(ch)) {
       Token token;
       char* iden = readIden(input, &pos);
       if(iden == NULL) {
         _mallocFailed();
       }
-      token = idenToToken(iden);
-      appendTokenList(&head, token);
+      token = idenToToken(iden, line_number);
+      appendTokenList(head, token);
     }else{
       /* ignore for now */
     }
     pos++;
     ch = input[pos];
   }
-  
-  return head;
 }

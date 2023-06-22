@@ -1,5 +1,8 @@
-push 15 
-push 5
-25 push
-some text
-push 222 some text
+push 15
+pall
+push 1
+push 2
+push 65
+push 12
+push 12 sdasdasda
+pall asdasd

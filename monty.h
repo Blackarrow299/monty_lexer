@@ -1,12 +1,12 @@
 #ifndef MAIN_H
 #define MAIN_H
+#define instructions_number 4
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stddef.h>
 #include <ctype.h>
 extern char* TokenLiteral[];
-
 int _iswhitespace(char ch);
 void _mallocFailed();
 
@@ -20,6 +20,7 @@ typedef enum TokenType {
 typedef struct Token{
   TokenType tokenType;
   char* value;
+  int line_number;
 } Token;
 
 typedef struct TokenNode{
@@ -28,11 +29,13 @@ typedef struct TokenNode{
 } TokenNode;
 void appendTokenList(TokenNode** head, Token data);
 
-Token createToken(TokenType tokenType,char* value);
-TokenNode* tokinizer(char* input);
+Token createToken(TokenType tokenType,char* value, int line_number);
+void tokinizer(TokenNode** head, char* input,int line_number);
 char* readIden(char* input ,size_t* pos);
 char* readInt(char* input ,size_t* pos);
-Token idenToToken(char* iden);
+Token idenToToken(char* iden,int line_number);
+TokenNode* getTokensByLine(TokenNode* head, int line_number);
+extern TokenNode* TokenNodeHead;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -64,7 +67,11 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+instruction_t* getInstructions();
+instruction_t* getInstructionByOpcode(instruction_t* instructions, char* opcode);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 
+void freeTokens(TokenNode *head);
+void freeStack(stack_t **head);
 #endif
