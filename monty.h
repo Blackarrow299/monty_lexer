@@ -14,6 +14,7 @@ typedef enum TokenType {
   INT,
   PUSH,
   PALL,
+  PINT,
   ILLEGAL
 } TokenType;
 
@@ -71,7 +72,7 @@ instruction_t* getInstructions();
 instruction_t* getInstructionByOpcode(instruction_t* instructions, char* opcode);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
-
+void pint(stack_t **stack, unsigned int line_number);
 void freeTokens(TokenNode *head);
 void freeStack(stack_t **head);
 #endif

@@ -1,8 +1,5 @@
 push 15
+push 20
 pall
-push a
-push 2
-push 65
-push 12
-push 12 sdasdasda
-pall asdasd
+push 22
+pint
