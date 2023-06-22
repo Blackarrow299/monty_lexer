@@ -26,7 +26,7 @@ instruction_t* getInstructions() {
 
 int main(int argc, char* argv[]) {
     FILE* file;
-    char line[256];
+    char line[1024];
     unsigned int lineNumber = 1; 
     stack_t *stack = NULL;
     instruction_t* instructions = getInstructions();
