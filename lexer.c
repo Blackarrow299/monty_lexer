@@ -1,6 +1,6 @@
 #include "monty.h"
 
-Token createToken(TokenType tokenType, char* value, int line_number) {
+Token createToken(TokenType tokenType, char* value,unsigned int line_number) {
   Token token;
   token.tokenType = tokenType;
   token.value = value;
@@ -46,7 +46,7 @@ char* readInt(char* input, size_t* pos){
   return out;
 }
 
-Token idenToToken(char* iden,int line_number) {
+Token idenToToken(char* iden, unsigned int line_number) {
   TokenType tokenType;
   if(strcmp(iden, TokenLiteral[PUSH]) == 0) {
     tokenType = PUSH;
@@ -58,7 +58,7 @@ Token idenToToken(char* iden,int line_number) {
   return createToken(tokenType, iden, line_number);
 }
 
-void tokinizer(TokenNode** head,char* input,int line_number) {
+void tokinizer(TokenNode** head,char* input, unsigned int line_number) {
   size_t pos = 0;
   char ch = input[pos];
   

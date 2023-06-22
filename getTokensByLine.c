@@ -1,6 +1,6 @@
 #include "monty.h"
 
-TokenNode* getTokensByLine(TokenNode* head, int line_number) {
+TokenNode* getTokensByLine(TokenNode* head,unsigned int line_number) {
     TokenNode* filteredHead = NULL;
     TokenNode* filteredTail = NULL;
 

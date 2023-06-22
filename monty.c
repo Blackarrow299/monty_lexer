@@ -5,7 +5,7 @@ char* TokenLiteral[] = {
   "int",
   "push", 
   "pall",
-  "pint",
+  "pint"
   "illegal"
 };
 
@@ -27,7 +27,7 @@ instruction_t* getInstructions() {
 int main(int argc, char* argv[]) {
     FILE* file;
     char line[256];
-    int lineNumber = 1; 
+    unsigned int lineNumber = 1; 
     stack_t *stack = NULL;
     instruction_t* instructions = getInstructions();
     TokenNode* currentNode = NULL;
@@ -57,7 +57,7 @@ int main(int argc, char* argv[]) {
       
       if(instruction == NULL) {
          /* theres no instruction TODO handle that */  
-        fprintf(stderr, "L%i: unknown instruction %s\n", lineNumber, tokens->data.value);
+        fprintf(stderr, "L%d: unknown instruction %s\n", lineNumber, tokens->data.value);
       exit(EXIT_FAILURE);
       }else {
         instruction->f(&stack , lineNumber);

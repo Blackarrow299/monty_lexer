@@ -1,6 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
-#define instructions_number 4
+#define instructions_number 5
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -21,7 +21,7 @@ typedef enum TokenType {
 typedef struct Token{
   TokenType tokenType;
   char* value;
-  int line_number;
+  unsigned int line_number;
 } Token;
 
 typedef struct TokenNode{
@@ -30,12 +30,12 @@ typedef struct TokenNode{
 } TokenNode;
 void appendTokenList(TokenNode** head, Token data);
 
-Token createToken(TokenType tokenType,char* value, int line_number);
-void tokinizer(TokenNode** head, char* input,int line_number);
+Token createToken(TokenType tokenType,char* value,unsigned int line_number);
+void tokinizer(TokenNode** head, char* input,unsigned int line_number);
 char* readIden(char* input ,size_t* pos);
 char* readInt(char* input ,size_t* pos);
-Token idenToToken(char* iden,int line_number);
-TokenNode* getTokensByLine(TokenNode* head, int line_number);
+Token idenToToken(char* iden,unsigned int line_number);
+TokenNode* getTokensByLine(TokenNode* head,unsigned int line_number);
 extern TokenNode* TokenNodeHead;
 
 /**
